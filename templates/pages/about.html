@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}|| About{% endblock title %}
+{% block content %}
+{% include 'navbar.html' %}
+
+      <h2>about us</h2>
+      <h3>Hello {{name}} is {{age}} years old</h3>
+      {% if num1 > num2 %}
+            <h2>{{num1}} is greater</h2>
+      {% else %}
+            <h2>{{num2}} is greater</h2>
+      {% endif %}
+
+      {% with  x=5  %}
+            {{x}}
+      {% endwith %}
+      <ul>
+            {% for i in nums %}
+            <li>{{i}}   </li>
+            {% endfor %}
+      </ul>
+      <table class='table w-25 mx-auto' border='1'>
+            <tr>
+                  <th>Roll</th>
+                  <th>Name</th>
+            </tr>
+            {% for i,j in students.items %}
+                  <tr>
+                        <td>{{i}}</td>
+                        <td>{{j}}</td>
+                  </tr>
+            {% endfor %}
+      </table>
+
+      <table border='1' class='table w-50 mx-auto' style="margin-top: 10px">
+            <tr>
+                  <th>Roll</th>
+                  <th>Name</th>
+                  <th>1st sem</th>
+                  <th>2nd sem</th>
+                  <th>3rd sem</th>
+                  <th>4th sem</th>
+            </tr>
+            {% for x,y in results.items %}
+                  <tr>
+                        <td>{{x}}</td>
+                        <td>{{y.name}}</td>
+                        {% for i in y.cgpa %}
+                        <td>{{i}}</td>
+                        {% endfor %}
+                  </tr>
+            {% endfor %}
+      </table>
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Bookstore{% block title %}{% endblock title %}</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg bg-primary  ">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><b class="fst-italic text-light">Bookstore</b></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link active text-light" aria-current="page" href="{% url 'index' %}"><i class="fa-solid fa-house text-light"></i> Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active text-light" aria-current="page" href="{% url 'aboutus' %}">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active text-light" aria-current="page" href="{% url 'all_books' %}"><i class="fa-solid fa-book text-light"></i> Books</a>
+                  </li>
+                  {% if user.is_authenticated %}
+                  <li class="nav-item ">
+                    <a class="nav-link active text-light" aria-current="page" href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping "></i> Cart</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-user"></i> Welcome! {{user.first_name}}
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                      <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{% url 'signout' %}">Logout</a></li>
+                    </ul>
+                  </li>
+                  {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'signup' %}">SignUp</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'signin' %}">SignIn</a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </nav>
+      {% block content %}
+          
+      {% endblock content %}
+
+    
+      <footer class="text-center py-2 ">
+            &copy; 2023 Bookstore
+      </footer>
+      <script src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+      {% block extrajs %}{% endblock extrajs %}
+</body>
+</html>
